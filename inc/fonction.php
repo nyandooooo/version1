@@ -14,15 +14,15 @@ function connecter($email, $mot_de_passe)
 function inscrire($email, $nom, $date_naissance, $genre, $ville, $mot_de_passe, $mot_de_passe1)
 {
     if ($mot_de_passe != $mot_de_passe1) {
-        return -3; 
+        return -3;
     }
- 
+
     $sql = "SELECT id_membre FROM objets_membre WHERE email = '%s'";
     $sql = sprintf($sql, $email);
     $result = mysqli_query(dbconnect(), $sql);
 
     if (mysqli_num_rows($result) > 0) {
-        return -2; 
+        return -2;
     }
     $sql = "INSERT INTO objets_membre (email, nom, date_naissance,genre,  ville , mdp) VALUES ('%s', '%s', '%s', '%s', '%s', '%s')";
     $sql = sprintf($sql, $email, $nom, $date_naissance, $genre, $ville, $mot_de_passe);
@@ -53,21 +53,56 @@ function login($email, $mot_de_passe)
         $row = mysqli_fetch_assoc($result);
         return $row['id_membre'];
     } else {
-        return -1; 
+        return -1;
     }
 }
 
-function get_objets_by_membre($id_membre)
+
+
+function get_objets_encours()
 {
-    $sql = "SELECT * FROM objets WHERE id_membre = %d";
-    $sql = sprintf($sql, $id_membre);
+    $sql = "SELECT * FROM v_objet
+    join objets_membre on v_objet.id_membre = objets_membre.id_membre";
     $result = tab($sql);
 
     if (empty($result)) {
-        return false; 
+        return false;
     }
     return $result;
 }
 
+function get_objets_notencours()
+{
+    $sql = "SELECT * FROM v_objet
+    join objets_membre on v_objet.id_membre = objets_membre.id_membre
+    where id_objet not in (select id_objet from objets_emprunt)";
+    $result = tab($sql);
 
+    if (empty($result)) {
+        return false;
+    }
+    return $result;
+}
 
+function filtrecategorie($id_categorie)
+{
+    $sql = "SELECT * FROM v_objets
+            WHERE id_categorie = $id_categorie";
+    $result = tab($sql);
+
+    if (empty($result)) {
+        return false;
+    }
+    return $result;
+}
+
+function get_categories()
+{
+    $sql = "SELECT * FROM objets_categorie_objet";
+    $result = tab($sql);
+
+    if (empty($result)) {
+        return false;
+    }
+    return $result;
+}

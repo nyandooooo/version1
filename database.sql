@@ -15,25 +15,25 @@ CREATE TABLE objets_membre (
 );
 
 CREATE TABLE objets_categorie_objet (
-    id_categorie int PRIMARY KEY,
+    id_categorie int PRIMARY KEY AUTO_INCREMENT,
     nom_categorie VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE  objets_objet (
-    id_objet int PRIMARY KEY,
+    id_objet int PRIMARY KEY AUTO_INCREMENT,
     nom_objet VARCHAR(100) NOT NULL,
     id_categorie int,
     id_membre int
 );
 
 CREATE TABLE objets_images_objet (
-    id_image int PRIMARY KEY,
+    id_image int PRIMARY KEY AUTO_INCREMENT,
     id_objet int,
     nom_image VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE objets_emprunt (
-    id_emprunt int PRIMARY KEY,
+    id_emprunt int PRIMARY KEY AUTO_INCREMENT,
     id_objet int,
     id_membre int,
     date_emprunt DATE NOT NULL,
@@ -43,14 +43,14 @@ CREATE TABLE objets_emprunt (
 
 
 
-INSERT INTO membre (nom, date_naissance, genre, email, ville, mdp, image_profil) VALUES
+INSERT INTO objets_membre (nom, date_naissance, genre, email, ville, mdp, image_profil) VALUES
 ('Alice',   '1985-02-10', 'F', 'alice@example.com',   'Paris',     'password1', 'alice.jpg'),
 ('Bob',     '1990-07-23', 'M', 'bob@example.com',     'Lyon',      'password2', 'bob.jpg'),
 ('Charlie', '1988-11-05', 'M', 'charlie@example.com', 'Marseille', 'password3', 'charlie.jpg'),
 ('Diana',   '1992-04-17', 'F', 'diana@example.com',   'Toulouse',  'password4', 'diana.jpg');
 
 -- Catégories
-INSERT INTO categorie_objet (nom_categorie) VALUES
+INSERT INTO objets_categorie_objet (nom_categorie) VALUES
 ('esthétique'),
 ('bricolage'),
 ('mécanique'),
@@ -58,28 +58,28 @@ INSERT INTO categorie_objet (nom_categorie) VALUES
 
 
 -- Membre 1 (Alice)
-INSERT INTO objet (nom_objet, id_categorie, id_membre) VALUES
+INSERT INTO objets_objet (nom_objet, id_categorie, id_membre) VALUES
 ('Obj_M1_Cat1_1', 1, 1), ('Obj_M1_Cat1_2', 1, 1), ('Obj_M1_Cat1_3', 1, 1),
 ('Obj_M1_Cat2_1', 2, 1), ('Obj_M1_Cat2_2', 2, 1), ('Obj_M1_Cat2_3', 2, 1),
 ('Obj_M1_Cat3_1', 3, 1), ('Obj_M1_Cat3_2', 3, 1),
 ('Obj_M1_Cat4_1', 4, 1), ('Obj_M1_Cat4_2', 4, 1);
 
 -- Membre 2 (Bob)
-INSERT INTO objet (nom_objet, id_categorie, id_membre) VALUES
+INSERT INTO objets_objet (nom_objet, id_categorie, id_membre) VALUES
 ('Obj_M2_Cat1_1', 1, 2), ('Obj_M2_Cat1_2', 1, 2), ('Obj_M2_Cat1_3', 1, 2),
 ('Obj_M2_Cat2_1', 2, 2), ('Obj_M2_Cat2_2', 2, 2), ('Obj_M2_Cat2_3', 2, 2),
 ('Obj_M2_Cat3_1', 3, 2), ('Obj_M2_Cat3_2', 3, 2),
 ('Obj_M2_Cat4_1', 4, 2), ('Obj_M2_Cat4_2', 4, 2);
 
 -- Membre 3 (Charlie)
-INSERT INTO objet (nom_objet, id_categorie, id_membre) VALUES
+INSERT INTO objets_objet (nom_objet, id_categorie, id_membre) VALUES
 ('Obj_M3_Cat1_1', 1, 3), ('Obj_M3_Cat1_2', 1, 3), ('Obj_M3_Cat1_3', 1, 3),
 ('Obj_M3_Cat2_1', 2, 3), ('Obj_M3_Cat2_2', 2, 3), ('Obj_M3_Cat2_3', 2, 3),
 ('Obj_M3_Cat3_1', 3, 3), ('Obj_M3_Cat3_2', 3, 3),
 ('Obj_M3_Cat4_1', 4, 3), ('Obj_M3_Cat4_2', 4, 3);
 
 -- Membre 4 (Diana)
-INSERT INTO objet (nom_objet, id_categorie, id_membre) VALUES
+INSERT INTO objets_objet (nom_objet, id_categorie, id_membre) VALUES
 ('Obj_M4_Cat1_1', 1, 4), ('Obj_M4_Cat1_2', 1, 4), ('Obj_M4_Cat1_3', 1, 4),
 ('Obj_M4_Cat2_1', 2, 4), ('Obj_M4_Cat2_2', 2, 4), ('Obj_M4_Cat2_3', 2, 4),
 ('Obj_M4_Cat3_1', 3, 4), ('Obj_M4_Cat3_2', 3, 4),
@@ -91,7 +91,7 @@ SELECT id_objet, 'image_' || id_objet || '.jpg'
 FROM objet;
 
 -- Emprunts (10 entrées)
-INSERT INTO emprunt (id_emprunt, id_objet, id_membre, date_emprunt, date_retour) VALUES
+INSERT INTO objets_emprunt (id_emprunt, id_objet, id_membre, date_emprunt, date_retour) VALUES
 (1,  1, 2, '2025-06-01', '2025-06-10'),
 (2,  5, 3, '2025-06-05', '2025-06-12'),
 (3, 10, 4, '2025-06-10', '2025-06-20'),

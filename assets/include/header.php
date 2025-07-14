@@ -237,7 +237,7 @@ function displayHeader(
         <!-- Header -->
         <nav class="navbar navbar-expand-lg navbar-dark custom-header">
             <div class="container">
-                <a class="navbar-brand" href="index.php">
+                <a class="navbar-brand" href="#">
                     <i class="fas fa-rocket me-2"></i>
                     <?php echo htmlspecialchars($brandName); ?>
                 </a>
@@ -245,44 +245,27 @@ function displayHeader(
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link <?php echo getActiveClass('dep', $activePage); ?>" href="index.php">
+                            <a class="nav-link <?php echo getActiveClass('dep', $activePage); ?>" href="liste_objet.php">
                                 <i class="fas fa-home me-1"></i>
-                                Départements
+                                Liste Objets
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link <?php echo getActiveClass('employee', $activePage); ?>" href="#">
+                            <a class="nav-link <?php echo getActiveClass('employee', $activePage); ?>" href="filtre.php">
                                 <i class="fas fa-info-circle me-1"></i>
-                                Employees
+                                Categorie
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link <?php echo getActiveClass('stats', $activePage); ?>" href="stats_departements.php">
+                            <a class="nav-link <?php echo getActiveClass('stats', $activePage); ?>" href="#">
                                 <i class="fas fa-cogs me-1"></i>
-                                Statistiques Départements
+                                Filtre
                             </a>
                         </li>
                       
                      
                     </ul>
-                    <div class="d-flex align-items-center">
-                        <form class="d-flex align-items-center me-2 gap-2 search-form" method="GET" action="recherche.php">
-                            <input type="search" name="search" class="form-control search-input" placeholder="Rechercher..." value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
-                            <select name="by" class="form-select form-select-sm">
-                                <option value="departement">Département</option>
-                                <option value="nom">Nom employé</option>
-                                <option value="age_min">Age minimum</option>
-                                <option value="age_max">Age maximum</option>
-                            </select>
-                            <button class="btn search-btn btn-primary ms-1" type="submit">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </form>
-                        <a href="register.php" class="btn btn-cta ms-2">
-                            <i class="fas fa-user-plus me-1"></i>
-                            Commencer
-                        </a>
-                    </div>
+                  
 
 
                 </div>
