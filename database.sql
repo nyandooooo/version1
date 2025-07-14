@@ -102,3 +102,50 @@ INSERT INTO objets_emprunt (id_emprunt, id_objet, id_membre, date_emprunt, date_
 (8, 35, 1, '2025-06-22', '2025-07-02'),
 (9, 40, 2, '2025-06-25', '2025-07-05'),
 (10, 8, 4, '2025-07-01', '2025-07-10');
+
+CREATE OR REPLACE VIEW v_objets AS
+SELECT
+  o.id_objet,
+  o.nom_objet,
+  o.id_categorie,
+  o.id_membre,
+  m.nom            AS nom_membre,
+  (
+    SELECT e.date_retour
+    FROM objets_emprunt AS e
+    WHERE e.id_objet   = o.id_objet
+    LIMIT 1
+  )                  AS date_retour
+FROM objets_objet AS o
+JOIN objets_membre AS m
+  ON o.id_membre = m.id_membre
+ORDER BY o.id_objet;
+
+
+
+CREATE OR REPLACE VIEW objets_emprunt_en_cours AS
+SELECT
+  o.id_objet,
+  o.nom_objet,
+  e.date_retour
+FROM objets_emprunt AS e
+JOIN objets_objet AS o
+  ON e.id_objet = o.id_objet
+;
+
+
+CREATE OR REPLACE VIEW v_membre AS
+SELECT
+  m.id_membre,
+  m.nom,
+  m.date_naissance,
+  m.genre,
+  m.email,
+  m.ville,
+  m.mdp,
+  m.image_profil,
+  COUNT(o.id_objet) AS nombre_objets
+FROM objets_membre AS m
+LEFT JOIN objets_objet AS o ON m.id_membre = o.id_membre
+GROUP BY m.id_membre, m.nom, m.date_naissance, m.genre, m.email, m.ville, m.mdp, m.image_profil
+ORDER BY m.id_membre;
