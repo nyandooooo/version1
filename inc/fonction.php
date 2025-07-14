@@ -61,8 +61,8 @@ function login($email, $mot_de_passe)
 
 function get_objets_encours()
 {
-    $sql = "SELECT * FROM v_objet
-    join objets_membre on v_objet.id_membre = objets_membre.id_membre";
+    $sql = "SELECT * FROM v_objets
+    join objets_membre on v_objets.id_membre = objets_membre.id_membre";
     $result = tab($sql);
 
     if (empty($result)) {
@@ -73,8 +73,8 @@ function get_objets_encours()
 
 function get_objets_notencours()
 {
-    $sql = "SELECT * FROM v_objet
-    join objets_membre on v_objet.id_membre = objets_membre.id_membre
+    $sql = "SELECT * FROM v_objets
+    join objets_membre on v_objets.id_membre = objets_membre.id_membre
     where id_objet not in (select id_objet from objets_emprunt)";
     $result = tab($sql);
 
