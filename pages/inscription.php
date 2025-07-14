@@ -141,20 +141,34 @@
 
 <body>
     <div class="form-container">
-        <div class="logo">Instagram</div>
+        <div class="logo">Salut</div>
         <form action="traitement.php" method="POST">
             <div class="form-group">
-                <input type="text" name="email" placeholder="Numéro de mobile ou e-mail" required>
+                <input type="text" name="email" placeholder="E-mail" required>
             </div>
             <div class="form-group">
                 <input type="text" name="fullname" placeholder="Nom complet" required>
             </div>
             <div class="form-group">
-                <input type="text" name="nom" placeholder="Nom d'utilisateur" required>
+                <input type="Date" name="naissance" placeholder="Date de naissance" required>
             </div>
             <div class="form-group">
-                <input type="password" name="password" placeholder="Mot de passe" required>
+                <select name="genre" id="">
+                    <option value="">Genre</option>
+                    <option value="F">F</option>
+                    <option value="M">M</option>
+                </select>
             </div>
+            <div class="form-group">
+                <input type="text" name="ville" placeholder="Ville" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="mdp" placeholder="Mot de Passe" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="mdp1" placeholder="Confirmation mot de Passe" required>
+            </div>
+          
             <input type="submit" value="Inscription">
         </form>
 
@@ -166,10 +180,10 @@
             <a href="#">Politique en matière de cookies</a>.
         </p>
 
-        
-       
+
+
         <div class="signup-link">
-        Vous avez un compte ?
+            Vous avez un compte ?
             <a href="login.php" style="color: #0095f6; text-decoration: none; font-weight: 600;"> Connectez-vous</a>
         </div>
     </div>

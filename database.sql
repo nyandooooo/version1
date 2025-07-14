@@ -1,7 +1,10 @@
 -- Création des tables
 
-CREATE TABLE membre (
-    id_membre  PRIMARY KEY,
+create database objets;
+use objets;
+
+CREATE TABLE objets_membre (
+    id_membre  int PRIMARY KEY,
     nom VARCHAR(100) NOT NULL,
     date_naissance DATE,
     genre VARCHAR(10),
@@ -11,26 +14,26 @@ CREATE TABLE membre (
     image_profil VARCHAR(255)
 );
 
-CREATE TABLE categorie_objet (
-    id_categorie  PRIMARY KEY,
+CREATE TABLE objets_categorie_objet (
+    id_categorie int PRIMARY KEY,
     nom_categorie VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE objet (
-    id_objet PRIMARY KEY,
+CREATE TABLE  objets_objet (
+    id_objet int PRIMARY KEY,
     nom_objet VARCHAR(100) NOT NULL,
     id_categorie int,
     id_membre int
 );
 
-CREATE TABLE images_objet (
-    id_image  PRIMARY KEY,
+CREATE TABLE objets_images_objet (
+    id_image int PRIMARY KEY,
     id_objet int,
     nom_image VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE emprunt (
-    id_emprunt  PRIMARY KEY,
+CREATE TABLE objets_emprunt (
+    id_emprunt int PRIMARY KEY,
     id_objet int,
     id_membre int,
     date_emprunt DATE NOT NULL,
