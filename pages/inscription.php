@@ -142,15 +142,15 @@
 <body>
     <div class="form-container">
         <div class="logo">Salut</div>
-        <form action="traitement.php" method="POST">
+        <form action="traitement/traitement_inscription.php" method="POST">
             <div class="form-group">
                 <input type="text" name="email" placeholder="E-mail" required>
             </div>
             <div class="form-group">
-                <input type="text" name="fullname" placeholder="Nom complet" required>
+                <input type="text" name="nom" placeholder="Nom complet" required>
             </div>
             <div class="form-group">
-                <input type="Date" name="naissance" placeholder="Date de naissance" required>
+                <input type="Date" name="date_naissance" placeholder="Date de naissance" required>
             </div>
             <div class="form-group">
                 <select name="genre" id="">

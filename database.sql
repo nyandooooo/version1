@@ -4,7 +4,7 @@ create database objets;
 use objets;
 
 CREATE TABLE objets_membre (
-    id_membre  int PRIMARY KEY,
+    id_membre  int PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(100) NOT NULL,
     date_naissance DATE,
     genre VARCHAR(10),
