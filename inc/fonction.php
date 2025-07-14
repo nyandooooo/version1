@@ -32,6 +32,16 @@ function inscrire($email, $nom, $date_naissance, $genre, $ville, $mot_de_passe, 
         return -1;
     }
 }
+function tab($sql)
+{
+    $membre_req = mysqli_query(dbconnect(), $sql);
+    $result = [];
+    while ($membre = mysqli_fetch_assoc($membre_req)) {
+        $result[] = $membre;
+    }
+
+    return $result;
+}
 
 function login($email, $mot_de_passe)
 {
@@ -46,4 +56,18 @@ function login($email, $mot_de_passe)
         return -1; 
     }
 }
+
+function get_objets_by_membre($id_membre)
+{
+    $sql = "SELECT * FROM objets WHERE id_membre = %d";
+    $sql = sprintf($sql, $id_membre);
+    $result = tab($sql);
+
+    if (empty($result)) {
+        return false; 
+    }
+    return $result;
+}
+
+
 

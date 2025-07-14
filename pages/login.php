@@ -106,12 +106,12 @@
     <div class="form-container">
         <div class="salut-logo">Salut</div>
         
-        <form action="traitement1.php" method="POST">
+        <form action="traitement/traitement_login.php" method="POST">
             <div class="form-group">
                 <input type="email" name="email" placeholder="Adresse e-mail" required>
             </div>
             <div class="form-group">
-                <input type="password" name="password" placeholder="Mot de passe" required>
+                <input type="password" name="mdp" placeholder="Mot de passe" required>
             </div>
             <input type="submit" value="Se connecter">
         </form>
