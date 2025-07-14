@@ -180,3 +180,43 @@ function emprenter($id_objet, $id_membre, $date_retour)
     return false;
 }
 
+
+function get_emprunts_membre(int $id_membre)
+{
+    $db  = dbconnect();
+    $sql = "
+        SELECT 
+            oe.id_emprunt,
+            o.id_objet,
+            o.nom_objet,
+            oe.date_emprunt,
+            oe.date_retour
+        FROM objets_emprunt AS oe
+        JOIN objets_objet   AS o ON oe.id_objet = o.id_objet
+        WHERE oe.id_membre = $id_membre
+          AND oe.date_retour IS NULL
+    ";
+    $res = mysqli_query($db, $sql);
+    if (!$res || mysqli_num_rows($res) === 0) {
+        return false;
+    }
+    return mysqli_fetch_all($res, MYSQLI_ASSOC);
+}
+
+
+function retourner(int $id_emprunt, string $date_retour): bool
+{
+    $db = dbconnect();
+    $dr = mysqli_real_escape_string($db, $date_retour);
+    $sql = "
+        UPDATE objets_emprunt
+        SET date_retour = '$dr'
+        WHERE id_emprunt = $id_emprunt
+    ";
+    return (bool) mysqli_query($db, $sql);
+}
+
+function is_expired(string $date_prevue): bool
+{
+    return strtotime($date_prevue) < strtotime(date('Y-m-d'));
+}
